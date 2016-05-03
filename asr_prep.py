@@ -6,7 +6,7 @@ Find closest starbucks or coffe bean and check today's weather.
 2. say 'find me starbucks'
 
                                                               Hyungwon Yang
-                                                                 2015.02.02
+                                                                 2015.04.14
                                                                    EMCS lab
 Spoken Dialogue System (SDS) overview
 
@@ -63,7 +63,6 @@ from util import *
 A = internet_check()
 if A is False:
     raise ConnectionError
-
 
 
 # Step1. ASR

@@ -1,4 +1,11 @@
-#! -*- coding=utf8 -*-
+'''
+utils for asr and interpreter scripts.
+
+
+                                                                    Written by Hyungwon Yang
+                                                                                2016. 05. 02
+                                                                                   EMCS Labs
+'''
 
 import warnings
 import requests
@@ -17,7 +24,6 @@ def internet_check():
         print('\n Internet is not connected. Please connect the internet first.')
         os.system('say Internet is not connected. Please check the internet connection and try again.')
         return False
-
 
 # Typical Sentence
 
@@ -92,7 +98,7 @@ def KORtoENG(code):
                 '메','며','멱','면','멸','명','모','목','몰','못',
                 '몽','뫼','묘','무','믁','문','물','므','미','민','밀'
 
-                '바','박','반','발',',밥','방','배','백','뱀',
+                '바','박','반','발','밥','방','배','백','뱀',
                 '버','번','벌','범','법','벼','벽','변','별','병',
                 '보','복','본','봉','부','북','분','불','붕','비',
                 '빈','빌','빔','빙','빠','빼','뻐','뽀','뿌','쁘','삐',
@@ -118,3 +124,55 @@ def KORtoENG(code):
 
     return restore
 
+
+######### For interpreter.py #########
+
+def inter_setting():
+
+    source_ask = 'say -v samantha What is your source language'
+    target_ask = 'say -v samantha What is your target language.'
+    confirm_ask = {'ko':'say -v yuna 소스 언어는 <source> 이며, 타겟 언어는 <target> 입니다, 번역언어 설정이 완료 되었습니다',
+                  'en':'say -v samantha The source language is <source>, and target language is <target>, language setting is completed'}
+    return source_ask,target_ask,confirm_ask
+
+def language_form():
+
+    lang_form ={'korean':'ko','english':'en'}
+    return lang_form
+
+
+class Interpreter_contents(object):
+
+    def __init__(self,source_lang,target_lang):
+        self.source = source_lang
+        self.target = target_lang
+
+    def inter_first(self):
+        text = {'ko':'say -v yuna 다음과 같이 말씀하셨습니다; say -v samantha ',
+                'en':'say -v samantha The sentence you have mentioned is;say -v samantha '}
+        return text[self.source]
+
+    def inter_second(self):
+        text = {'ko':'say -v yuna 번역하고자하는 영어문장을 말해주세요.',
+                'en':'say -v samantha please say a sentence that needs to be translated'}
+        return text[self.source]
+
+    def inter_third(self):
+        text = {'ko':'say -v yuna 번역이 완료되었습니다.',
+                'en':'say -v samantha translation is completed'}
+        return text[self.source]
+
+    def inter_fourth(self):
+        text = {'ko': 'say -v yuna ',
+                'en': 'say -v samantha '}
+        return text[self.source]
+
+    def inter_end(self):
+        text = {'ko':'say -v yuna 번역매니저를 종료합니다, 감사합니다',
+                'en':'say -v samantha Terminating translate manager, Thank you.'}
+        return text[self.source]
+
+    def inter_continue(self):
+        text = {'ko': 'say -v yuna 잠시 후, 동시 번역 상태로 전환합니다. 원치않으실 경우, 시스템을 종료해주시기 바랍니다',
+                'en': 'say -v samantha automatic translation will be activated in a few second, please turn off the system if you dont want to proceed'}
+        return text[self.source]
