@@ -1,7 +1,7 @@
 #! -*- coding=utf8 -*-
 '''
 This is demo version: SDS preparation.
-Find closest starbucks or coffe bean and check today's weather.
+Find closest starbucks or coffee bean and check today's weather.
 1. Run the script.
 2. say 'find me starbucks'
 

@@ -19,6 +19,13 @@ from util import *
 key_number = 'AIzaSyB52DQtWqssMqJ3ORlQzA_MveJlRU5WRBM'
 #############################################
 
+# Error check needs to be added.
+# 1. api key validity check
+# 2. package installation check
+# 3. computer os check(it needs to be mac)
+# 4. tts check. samantha and yuna should be installed.
+# problems 3 and 4 will be solved if tts can be accessed through api.
+
 def sort_out(dict, key, *keys):
     if keys:
         return sort_out(dict.get(key, {}), *keys)
@@ -39,13 +46,14 @@ def translator_manager():
     with sr.Microphone() as mike:
         os.system(source)
         source_sound = recorder.listen(mike)
+    source_lang = recorder.recognize_google(source_sound)
+    print('source language: ' + source_lang)
 
     with sr.Microphone() as mike:
         os.system(target)
         target_sound = recorder.listen(mike)
-
-    source_lang = recorder.recognize_google(source_sound)
     target_lang = recorder.recognize_google(target_sound)
+    print('target language: ' + target_lang)
 
     # Parameter setting.
     lang_form = language_form()
@@ -54,6 +62,10 @@ def translator_manager():
 
     S = list(lang_form.values())[source_idx]
     T = list(lang_form.values())[target_idx]
+
+    translate_form = translate_lang_form()
+    lang_opt = translate_form[S]
+
 
     confirm_text = confirm[S]
     setting_text = re.sub('<source>',source_lang,confirm_text)
@@ -72,9 +84,8 @@ def translator_manager():
 
     print('Processing...')
 
-    tmp_words = recorder.recognize_google(my_sound)
-    os.system(ic.inter_second())
-
+    tmp_words = recorder.recognize_google(my_sound,language=lang_opt)
+    os.system(ic.inter_second() + tmp_words)
 
     ### Language translation.
     int_url = 'https://www.googleapis.com/language/translate/v2?'
@@ -92,11 +103,13 @@ def translator_manager():
     os.system(ic.inter_third())
     os.system(ic.inter_fourth() + source_sent)
 
+    os.system(ic.inter_end())
+
     '''
     ### First round is finished. keep continue or quit? ###
     os.system(ic.inter_continue())
     time.sleep(3)
     '''
 
-if __name__ is '__main__':
+if __name__ == '__main__':
     translator_manager()

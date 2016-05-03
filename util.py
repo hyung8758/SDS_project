@@ -136,8 +136,11 @@ def inter_setting():
     return source_ask,target_ask,confirm_ask
 
 def language_form():
+    lang_form ={'korean':'ko','english':'en','Korean':'ko','English':'en'}
+    return lang_form
 
-    lang_form ={'korean':'ko','english':'en'}
+def translate_lang_form():
+    lang_form ={'ko':'ko','en':'en-US'}
     return lang_form
 
 
@@ -148,13 +151,13 @@ class Interpreter_contents(object):
         self.target = target_lang
 
     def inter_first(self):
-        text = {'ko':'say -v yuna 다음과 같이 말씀하셨습니다; say -v samantha ',
-                'en':'say -v samantha The sentence you have mentioned is;say -v samantha '}
+        text = {'ko':'say -v yuna 번역하고자하는 문장을 말해주세요.',
+                'en':'say -v samantha please say a sentence that needs to be translated'}
         return text[self.source]
 
     def inter_second(self):
-        text = {'ko':'say -v yuna 번역하고자하는 영어문장을 말해주세요.',
-                'en':'say -v samantha please say a sentence that needs to be translated'}
+        text = {'ko':'say -v yuna 다음과 같이 말씀하셨습니다; say -v yuna ',
+                'en':'say -v samantha The sentence you have mentioned is;say -v daniel '}
         return text[self.source]
 
     def inter_third(self):
@@ -165,10 +168,10 @@ class Interpreter_contents(object):
     def inter_fourth(self):
         text = {'ko': 'say -v yuna ',
                 'en': 'say -v samantha '}
-        return text[self.source]
+        return text[self.target]
 
     def inter_end(self):
-        text = {'ko':'say -v yuna 번역매니저를 종료합니다, 감사합니다',
+        text = {'ko':'say -v yuna 번역 매니저를 종료합니다, 감사합니다',
                 'en':'say -v samantha Terminating translate manager, Thank you.'}
         return text[self.source]
 
