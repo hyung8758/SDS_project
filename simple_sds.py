@@ -1,4 +1,3 @@
-#! -*- coding=utf8 -*-
 '''
 This is demo version: SDS preparation.
 Find closest starbucks or coffee bean and check today's weather.
@@ -55,13 +54,12 @@ from nltk import Nonterminal, nonterminals, Production, CFG
 from nltk.parse import RecursiveDescentParser
 from bs4 import BeautifulSoup
 
+from dialogues import *
 from util import *
-
 
 # Check list.
 
-A = internet_check()
-if A is False:
+if internet_check() is False:
     raise ConnectionError
 
 

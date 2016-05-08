@@ -11,13 +11,14 @@ import os
 import re
 import speech_recognition as sr
 import requests
-import time
 
+from dialogues import *
 from util import *
 
-##### Google API Key Number is Required #####
+##### Google API Key Number is Required for translation #####
 key_number = 'AIzaSyB52DQtWqssMqJ3ORlQzA_MveJlRU5WRBM'
-#############################################
+#############################################################
+
 
 # Error check needs to be added.
 # 1. api key validity check
@@ -25,6 +26,7 @@ key_number = 'AIzaSyB52DQtWqssMqJ3ORlQzA_MveJlRU5WRBM'
 # 3. computer os check(it needs to be mac)
 # 4. tts check. samantha and yuna should be installed.
 # problems 3 and 4 will be solved if tts can be accessed through api.
+# 5. The most important questions are... how to improve accuracy and rapidity
 
 def sort_out(dict, key, *keys):
     if keys:
@@ -36,24 +38,52 @@ A = internet_check()
 if A is False:
     raise ConnectionError
 
+# Key check
+if not key_number:
+    print('Please type the google API key in the interpreter.py script.')
+    os.system('say -v samantha google API key is not loaded, please set the key value first.')
+    raise SystemError
+
+
 ### get the interpreted sentence.
 def translator_manager():
 
     recorder = sr.Recognizer()
     ### Language selection ###
-    os.system('say -v samantha Hello, this is translate manager, please answer the following questions in order to set the language options')
-    source, target, confirm = inter_setting()
-    with sr.Microphone() as mike:
-        os.system(source)
-        source_sound = recorder.listen(mike)
-    source_lang = recorder.recognize_google(source_sound)
-    print('source language: ' + source_lang)
+    intro = inter_intro()
+    os.system(intro)
+    s_require, t_require, source, target, confirm = inter_setting()
+    P = 1
+    while P is 1:
+        with sr.Microphone() as mike:
+            os.system(source)
+            source_sound = recorder.listen(mike)
+        source_lang = recorder.recognize_google(source_sound)
+        source_tmp = lang_check(source_lang)
+        # No source language or more than two source languages are detected.
+        if len(source_tmp) == 1:
+            # One source language is detected.
+            P = 0
+        else:
+            os.system(s_require)
+    print('source language: ' + source_tmp[0])
+    source_lang = source_tmp[0]
 
-    with sr.Microphone() as mike:
-        os.system(target)
-        target_sound = recorder.listen(mike)
-    target_lang = recorder.recognize_google(target_sound)
+    P = 1
+    while P is 1:
+        with sr.Microphone() as mike:
+            os.system(target)
+            target_sound = recorder.listen(mike)
+        target_lang = recorder.recognize_google(target_sound)
+        target_tmp = lang_check(target_lang)
+        # No source language or more than two source languages are detected.
+        if len(target_tmp) == 1:
+            # One source language is detected.
+            P = 0
+        else:
+            os.system(t_require)
     print('target language: ' + target_lang)
+    target_lang = target_tmp[0]
 
     # Parameter setting.
     lang_form = language_form()
