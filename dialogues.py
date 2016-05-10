@@ -122,15 +122,18 @@ def inter_setting():
     source_ask = 'say -v samantha What is your source language'
     target_ask = 'say -v samantha What is your target language.'
     confirm_ask = {'ko':'say -v yuna 소스 언어는 <source> 이며, 타겟 언어는 <target> 입니다, 번역언어 설정이 완료 되었습니다',
-                  'en':'say -v samantha The source language is <source>, and target language is <target>, language setting is completed'}
+                   'en':'say -v samantha The source language is <source>, and target language is <target>, language setting is completed',
+                   'zh-CN':'say -v Ting-Ting 源语言是 <source>, 目标语言是 <target>, 设定翻译语言完成了',
+                   'ja':'say -v kyoko ソース言語は <source>, ターゲット言語は <target> です, 翻訳言語の設定が完了しました'}
     return source_require, target_require,source_ask,target_ask,confirm_ask
 
 def language_form():
-    lang_form ={'korean':'ko','english':'en','Korean':'ko','English':'en'}
+    lang_form ={'korean':'ko','english':'en','Korean':'ko','English':'en','japanese':'ja','Japanese':'ja',
+                'chinese':'zh-CN','Chinese':'zh-CN'}
     return lang_form
 
 def translate_lang_form():
-    lang_form ={'ko':'ko','en':'en-US'}
+    lang_form ={'ko':'ko','en':'en-US','zh-CN':'zh-CN','ja':'ja'}
     return lang_form
 
 
@@ -142,30 +145,42 @@ class Interpreter_contents(object):
 
     def inter_first(self):
         text = {'ko':'say -v yuna 번역하고자하는 문장을 말해주세요.',
-                'en':'say -v samantha please say a sentence that needs to be translated'}
+                'en':'say -v samantha please say a sentence that needs to be translated',
+                'zh-CN': 'say -v Ting-Ting 请您说需要翻译的句子',
+                'ja': 'say -v kyoko 翻訳したい文章を言って下さい'}
         return text[self.source]
 
     def inter_second(self):
-        text = {'ko':'say -v yuna 다음과 같이 말씀하셨습니다; say -v yuna ',
-                'en':'say -v samantha The sentence you have mentioned is;say -v daniel '}
+        text = {'ko':'say -v yuna 다음과 같이 말씀하셨습니다, ',
+                'en':'say -v samantha The sentence you have mentioned is;say -v daniel ',
+                'zh-CN': 'say -v Ting-Ting 您刚才说这样的句子, ',
+                'ja': 'say -v kyoko 翻訳したい文章を言って下さい, '}
         return text[self.source]
 
     def inter_third(self):
         text = {'ko':'say -v yuna 번역이 완료되었습니다.',
-                'en':'say -v samantha translation is completed'}
+                'en':'say -v samantha translation is completed',
+                'zh-CN': 'say -v Ting-Ting 翻译完成了',
+                'ja': 'say -v kyoko 翻訳が完了しました'}
         return text[self.source]
 
     def inter_fourth(self):
         text = {'ko': 'say -v yuna ',
-                'en': 'say -v samantha '}
+                'en': 'say -v samantha ',
+                'zh-CN': 'say -v Ting-Ting ',
+                'ja': 'say -v kyoko '}
         return text[self.target]
 
     def inter_end(self):
         text = {'ko':'say -v yuna 번역 매니저를 종료합니다, 감사합니다',
-                'en':'say -v samantha Terminating translate manager, Thank you.'}
+                'en':'say -v samantha Terminating translate manager, Thank you.',
+                'zh-CN': 'say -v Ting-Ting 翻译软件结束, 谢谢',
+                'ja': 'say -v kyoko 翻訳マネージャを終了します, ありがとうございました'}
         return text[self.source]
 
     def inter_continue(self):
         text = {'ko': 'say -v yuna 잠시 후, 동시 번역 상태로 전환합니다. 원치않으실 경우, 시스템을 종료해주시기 바랍니다',
-                'en': 'say -v samantha automatic translation will be activated in a few second, please turn off the system if you dont want to proceed'}
+                'en': 'say -v samantha automatic translation will be activated in a few second, please turn off the system if you dont want to proceed',
+                'zh-CN': 'say -v Ting-Ting 一会儿之后，转换同时翻译状况。不需要的话，请您退出软件',
+                'ja': 'say -v kyoko 間もなく同時翻訳状態に転換します, お望みでない場合, システムを終了して下さい'}
         return text[self.source]

@@ -96,7 +96,6 @@ def translator_manager():
     translate_form = translate_lang_form()
     lang_opt = translate_form[S]
 
-
     confirm_text = confirm[S]
     setting_text = re.sub('<source>',source_lang,confirm_text)
     setting_text = re.sub('<target>',target_lang,setting_text)
