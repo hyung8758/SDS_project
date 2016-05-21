@@ -1,73 +1,37 @@
 '''
-This is demo version: SDS preparation.
-Find closest starbucks or coffee bean and check today's weather.
-1. Run the script.
-2. say 'find me starbucks'
+Theona is SDS system.
+It is building on...
+Please find simple_sds.py in SDS_tutorial folder
+and understand whole SDS system briefly.
+simple.sds script will help you to understand the algorithms.
 
                                                               Hyungwon Yang
-                                                                 2015.04.14
+                                                                 2015.05.10
                                                                    EMCS lab
-Spoken Dialogue System (SDS) overview
+Spoken Dialogue System (SDS)
 
-SDS procedure
-1. ASR (Automatic Speech Recognition)
-2. SLU (Spoken Language Understanding)
-3. DM  (Dialogue Manage)
-4. NLG (Natural Language Generation)
-5. TTS (Text to Speech)
-
-This is only runnable in python 3.
-
-Reference
-1. ASR
-
-2. SLU
-    http://www.nltk.org/api/nltk.classify.html?highlight=decisiontree#nltk.classify.decisiontree.DecisionTreeClassifier
-    http://www.nltk.org/howto/parse.html
-    http://www.nltk.org/book/
-
-3. DM
-
-4. NLG
-    http://streamhacker.com/
-    http://resources.narrativescience.com/h/i/124944227-what-is-natural-language-generation
-    https://books.google.co.kr/books?id=PC5nBAAAQBAJ&dq=dialogue+manager+python&hl=ko&source=gbs_navlinks_s
-5. TTS
-    http://www.ispeech.org/text.to.speech
-    https://pypi.python.org/pypi/gTTS/1.0.2 > blocked. cannot test.
-    https://pypi.python.org/pypi/pyttsx > Not Good.
-
-## Add what?
-# speaker recognition
-# language recognition
 
 '''
 
+
 import re
-import os
-import sys
 import speech_recognition as sr
 import requests
 import nltk
 
 from nltk import word_tokenize
-from nltk import nonterminals, CFG
+from nltk import Nonterminal, nonterminals, Production, CFG
 from nltk.parse import RecursiveDescentParser
 from bs4 import BeautifulSoup
 
-# # path settings for modules
-# now_path=os.getcwd()
-# PACKAGE_PARENT = '..'
-# SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(now_path))))
-# sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
-
-from main_process.grammar_generator import *
 from sub_process.dialogues import *
 from sub_process.util import *
 
 # Check list.
+
 if internet_check() is False:
     raise ConnectionError
+
 
 # Step1. ASR
 # Use recognizer to record the speech.
@@ -89,7 +53,7 @@ print(words)
 
 # Step2. SLU
 # 1. find the specific places to users.
-#words = 'find me starbucks'
+#words = 'show me starbucks'
 
 # Tokenize the sentence.
 tokenized = word_tokenize(words)
@@ -163,11 +127,15 @@ phone_info = all_data[0].find_all('span',{'class','f_url'})[0].text
 # Location (map)
 map_info = all_data[0].find('a').get('href')
 
+# Weather
+
+
+
 # Step4. NLG
 # Generate an appropriate sentence.
 answer_text = NLG_transoformation('find')
 
-# Detect language and change the tts speaker.
+# Adjust the words if it is Korean.
 address_info = lang_adjust(address_info)
 
 # Substitude the markers to proper words
@@ -177,5 +145,3 @@ answer_text = re.sub('<phone>',phone_info,answer_text)
 
 # Step5. TTS
 os.system('say ' + answer_text)
-
-

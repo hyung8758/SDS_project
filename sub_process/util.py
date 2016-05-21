@@ -11,7 +11,7 @@ import requests
 import os
 import re
 
-from dialogues import language_form
+from sub_process.dialogues import language_form
 
 
 # Internet connection check.
