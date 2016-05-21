@@ -13,9 +13,12 @@ import langid
 
 ############################################# SDS_project ######################################################
 
-def sentence_generation(type,):
+def sentence_generation(type):
     if type == 'open':
-        return 'say -v alex Activate the system. Please wait for a moment before the system is stablized.'
+        alex1 = 'say -v alex Activate the system. Please wait for a moment before the system is stablized.'
+        alex2 = 'say -v alex system stablized, activate theona'
+        theona1 = 'say -v samantha hello, This is Theona, I am ready to have a nice chatting with you.'
+        return alex1, alex2, theona1
 
     rand_num = random.randint(1,3)
     if type == 'hello':

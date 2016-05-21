@@ -16,7 +16,7 @@ SDS procedure
 4. NLG (Natural Language Generation)
 5. TTS (Text to Speech)
 
-This is only runnable in python 3.
+This is only runnable on python 3.
 
 Reference
 1. ASR
@@ -54,12 +54,6 @@ from nltk import word_tokenize
 from nltk import nonterminals, CFG
 from nltk.parse import RecursiveDescentParser
 from bs4 import BeautifulSoup
-
-# # path settings for modules
-# now_path=os.getcwd()
-# PACKAGE_PARENT = '..'
-# SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(now_path))))
-# sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 from main_process.grammar_generator import *
 from sub_process.dialogues import *
@@ -100,18 +94,7 @@ usr_goal = ENTITY_PLACE
 usr_find = GOAL_FIND
 VP,NP,O = nonterminals('VP,NP,O')
 
-grammar = CFG.fromstring("""
-VP -> GOAL_FIND O ENTITY_PLACE | GOAL_FIND ENTITY_PLACE
-NP -> P ENTITY_PLACE | ENTITY_PLACE
-GOAL_FIND -> 'find'
-GOAL_FIND  -> 'show'
-GOAL_FIND  -> 'tell'
-O -> 'me'
-P -> 'in'
-ENTITY_PLACE -> 'starbucks'
-ENTITY_PLACE -> 'Starbucks'
-
-""")
+grammar = CFG_grammar()
 rd_parser = RecursiveDescentParser(grammar)
 
 # Parsing the sentence.

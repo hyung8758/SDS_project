@@ -12,6 +12,7 @@ import nltk
 from nltk import word_tokenize
 from nltk import Nonterminal, nonterminals, Production, CFG
 from nltk.parse import RecursiveDescentParser
+from nltk.corpus import conll2000
 
 
 ### Generating a Context Free Grammar (CFG).
@@ -33,15 +34,20 @@ def CFG_grammar():
     O -> 'me'
     P -> 'in'
     ENTITY_PLACE -> 'starbucks'
-    ENTITY_PLACE -> 'Starbucks'
-    ENTITY_PLACE -> 'Coffee Bean'
-    ENTITY_PLACE -> 'Coffeebean'
+    ENTITY_PLACE -> 'the starbucks'
+    ENTITY_PLACE -> 'a starbucks'
+    ENTITY_PLACE -> 'coffee bean'
+    ENTITY_PLACE -> 'the coffee bean'
+    ENTITY_PLACE -> 'a coffee bean'
 
     """)
     return grammar
 
 
 ### Training corpus for better parsing (POS tagging)
+test_sents = conll2000.chunked_sents('test.txt', chunk_types=['NP'])
+train_sents = conll2000.chunked_sents('train.txt', chunk_types=['NP'])
+
 
 class ChunkParser(nltk.ChunkParserI):
     def __init__(self, train_sents):
@@ -80,7 +86,7 @@ class ConsecutiveNPChunkTagger(nltk.TaggerI):
             history.append(tag)
         return zip(sentence, history)
 
-class ConsecutiveNPChunker(nltk.ChunkParserI): # [_consec-chunker]
+class ConsecutiveNPChunker(nltk.ChunkParserI):
     def __init__(self, train_sents):
         tagged_sents = [[((w,t),c) for (w,t,c) in
                          nltk.chunk.tree2conlltags(sent)]
@@ -119,3 +125,24 @@ def tags_since_dt(sentence, i):
          else:
              tags.add(pos)
      return '+'.join(sorted(tags))
+
+# Tree reconstruction.
+def tree_reconstruct(text):
+
+    string_box = []
+    final_box = []
+    for tree in text:
+        tmp_box = []
+        if type(tree) == nltk.tree.Tree:
+            for node in tree:
+                for single in node[::2]:
+                    tmp_box.append(single)
+            string_box = ' '.join(tmp_box)
+            final_box.append(string_box)
+        else:
+            for node in tree[::2]:
+                tmp_box.append(node)
+            string_box = ' '.join(tmp_box)
+            final_box.append(string_box)
+
+    return final_box

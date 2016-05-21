@@ -10,6 +10,9 @@ utils for asr and interpreter scripts.
 import requests
 import os
 import re
+import pyaudio
+import wave
+import time
 
 from sub_process.dialogues import language_form
 
@@ -34,4 +37,24 @@ def lang_check(sentence):
             box.append(tmp[0])
     return box
 
+def audio_play(song):
 
+    dir_path = os.path.abspath('source')
+    name = os.path.join(dir_path,song)
+    chunk = 1024
+    wf = wave.open(name, 'rb')
+    p = pyaudio.PyAudio()
+
+    stream = p.open(
+        format=p.get_format_from_width(wf.getsampwidth()),
+        channels=wf.getnchannels(),
+        rate=wf.getframerate(),
+        output=True)
+    data = wf.readframes(chunk)
+
+    while len(data) > 0:
+        stream.write(data)
+        data = wf.readframes(chunk)
+
+    stream.close()
+    p.terminate()

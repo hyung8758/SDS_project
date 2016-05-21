@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
-location = path.abspath(path.dirname(__file__))
+location = path.abspath(path.dirname('SDS_project'))
 
 # Get the long description from the README file
 with open(path.join(location, 'README.md'), encoding='utf-8') as f:
@@ -26,7 +26,11 @@ setup(
       keywords=['Spoken Dialogue System','Automatic Speech Recognition',
                'Interpreting system'],
       packages=['main_process','sub_process'],
-      install_requires=['SpeechRecognition','nltk','beautifulsoup4','langid'],
+      install_requires=['SpeechRecognition','nltk','beautifulsoup4','langid',
+                        'pyaudio','wave'],
       )
 
+# Install megam for optimization
+os.system('brew install megam')
+# Erase directories.
 os.system('rm -rf build dist SDS_project.egg-info')
