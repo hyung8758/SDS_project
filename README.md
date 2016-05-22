@@ -3,8 +3,8 @@
                                                                             2016.05.20
                                                                               EMCS lab    
 
-Linux and MacOSX (This script is not tested on Window)
----
+MacOSX (This script is not tested on Window and Linux)
+----------------------------------------------------------------
 
 Python 3.5
 (This script was not tested on the other versions.)
@@ -32,16 +32,38 @@ DIRECTION
         - Click Dictation & Speech.
         - In the text to speech section, click customize.. or samantha in system voice bar.
         - Choose samantha and install the voice.
+
 2. Two options are provided. 'slow' and 'fast'
     - slow(default): type '$python3 interpreter.py' or '$python3 interpreter.py slow'
                    in the terminal command line. It is tutorial mode which shows
                    all the procedures of interpretation.
-    - fast: tyep '$python3 interpreter.py fast' then it will skip all the tutorial lines
+    - fast: type '$python3 interpreter.py fast' then it will skip all the tutorial lines
           and activate fast translating mode.
+
+3. Usage.
+- 'slow' option: 
+    - Tell your source and target languages to computer when it asks you. 
+      Source language is input language (to be interpreted), and target
+      language is output language (translated source language).
+      ex) computer: What is your source language?
+          You : English / It is English / My source language is English.
+- 'fast' option:
+    - Select your source and target languages directly and wait until computer
+      set the language option. 
+    - After beep sound, (you must wait 2-3 seconds after beep sound) speak 
+      the sentence. 
+    - Different beep sound will be generated and the translated sentence will
+      be written on the screen and spoken simultaneously.
+       
+4. language Support.
+    - Korean, English, Japanese, Chinese.
 
 CONTENTS
 ---
-Spoken Dialogue System (SDS) and Interpreting System.
+Spoken Dialogue System: Theona.
+
+
+Interpreter.
 
 
 CONTACTS

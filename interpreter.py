@@ -70,7 +70,7 @@ def translator_manager(trans_mode=mode_arg):
 
         recorder = sr.Recognizer()
         ### Language selection ###
-        intro = inter_intro()
+        intro = inter_intro(trans_mode)
         os.system(intro)
         s_require, t_require, source, target, confirm = inter_setting()
         P = 1
@@ -203,13 +203,17 @@ def translator_manager(trans_mode=mode_arg):
         lang_opt = translate_form[S]
 
         ### Start translation.
+        audio_play('start.wav')
         ic = Interpreter_contents(S, T)
+        intro = inter_intro(trans_mode)
+        os.system(intro)
 
         while True:
 
             # Get the sound.
             recorder = sr.Recognizer()
             with sr.Microphone() as mike:
+                audio_play('pong.wav')
                 print('Please speaking.')
                 my_sound = recorder.listen(mike)
 
@@ -230,6 +234,7 @@ def translator_manager(trans_mode=mode_arg):
             source_sent = sort_out(covered_sent[0],'translatedText')
 
             # TTS
+            audio_play('tone.wav')
             print('sentence: ' + source_sent)
             os.system(ic.inter_fourth() + source_sent)
     else:

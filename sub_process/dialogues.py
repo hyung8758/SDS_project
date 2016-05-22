@@ -155,8 +155,11 @@ def KORtoENG(code):
 
 ############################################# interpreter ######################################################
 
-def inter_intro():
-    intro = 'say -v samantha Hello, this is translate manager, please answer the following questions in order to set the language options'
+def inter_intro(option):
+    if option == 'slow':
+        intro = 'say -v samantha Hello, this is translate manager, please answer the following questions in order to set the language options'
+    elif option == 'fast':
+        intro = 'say -v samantha Translation system is activated.'
     return intro
 
 def inter_setting():
