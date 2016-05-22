@@ -1,4 +1,4 @@
-# SDS_project (Theona) + Interpreter
+# SDS_project:Theona & Interpreter
                                                                          Hyungwon Yang
                                                                             2016.05.20
                                                                               EMCS lab    
@@ -12,11 +12,20 @@ Python 3.5
 
 PREREQUEISTE
 ------------
-### SDS_project & Interpreter
+### SDS_project:Theona & Interpreter
 
-- python 3 is required. This package is not running on python 2.
-- Download the package and navigate to the SDS_project directory.
-- Type '$python3 setup.py install' in the command line. (It only works on python3)
+1. Install python3: python 3 is required. This package is not running on python 2.
+2. Download the package and navigate to the SDS_project directory and install it.
+   Type as below in the terminal command line.
+~~~
+$ git clone https://github.com/hyung8758/SDS_project.git
+$ python3 setup.py install
+~~~
+3. Install Alex and Samantha voice. (Skip this step if the voices are already installed.)
+   - Go System preference.
+   - Click Dictation & Speech.
+   - In the text to speech section, click customize.. or samantha in system voice bar.
+   - Choose Alex and Samantha and install them.
 
 
 DIRECTION
