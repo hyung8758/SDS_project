@@ -23,20 +23,20 @@ def sentence_generation(type):
     rand_num = random.randint(1,3)
     if type == 'hello':
         if rand_num == 1:
-            gretting = 'say hello, howcan I help you'
+            gretting = 'say -v samantha hello, howcan I help you'
         elif rand_num == 2:
-            gretting = 'say good morning, whatcan I do for you today'
+            gretting = 'say -v samantha good morning, whatcan I do for you today'
         elif rand_num == 3:
-            gretting = 'say hi, please let me know what I have to do for you'
+            gretting = 'say -v samantha hi, please let me know what I have to do for you'
 
         return gretting
 
     if type == 'finding':
-        finding = 'say finding <place>'
+        finding = 'say -v samantha finding <place>'
         return finding
 
     if type == 'searching':
-        searching = 'say searching <place>'
+        searching = 'say -v samantha searching <place>'
         return searching
 
 
@@ -46,10 +46,10 @@ def NLG_transoformation(type):
 
     # request type: FIND
     if type == 'find':
-        request = 'The closest <place> is located in <address> and the phone number is <phone>'
+        request = 'say -v samantha The closest <place> is located in <address> and the phone number is <phone>'
     # request type: SEARCH
     elif type == 'search':
-        request = 'Today''s weather in <location> is <weather>'
+        request = 'say -v samantha Today''s weather in <location> is <weather>'
 
     return request
 
