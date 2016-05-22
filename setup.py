@@ -19,7 +19,7 @@ setup(
       author_email='hyung8758@gmail.com',
       license='EMCS labs',
       classifiers=[
-                   'Development Status :: 3 - Alpha',
+                   'Development Status :: 3',
                    'Intended Audience :: Research and Study',
                    'Programming Language :: Python :: 3.5',
                    ],
@@ -34,3 +34,6 @@ setup(
 os.system('brew install megam')
 # Erase directories.
 os.system('rm -rf build dist SDS_project.egg-info')
+
+# Notion
+os.system('echo Please read README file before you test the scripts.')
