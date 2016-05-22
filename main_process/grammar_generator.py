@@ -7,8 +7,6 @@ Grammar Generator.
                                                                                    EMCS Labs
 '''
 
-import speech_recognition as sr
-import requests
 import nltk
 
 from nltk import word_tokenize
@@ -33,17 +31,14 @@ def CFG_grammar():
     GOAL_FIND -> 'find'
     GOAL_FIND  -> 'show'
     GOAL_FIND  -> 'tell'
-    GOAL_FIND -> 'activate'
     O -> 'me'
     P -> 'in'
-    ENTITY_PLACE -> 'Starbucks'
-    ENTITY_PLACE -> 'the Starbucks'
-    ENTITY_PLACE -> 'a Starbucks'
-    ENTITY_PLACE -> 'Coffee bean'
-    ENTITY_PLACE -> 'the Coffee bean'
-    ENTITY_PLACE -> 'a Coffee bean'
-    ENTITY_PLACE -> 'twosome place'
-    ENTITY_PLACE -> 'Korea University'
+    ENTITY_PLACE -> 'starbucks'
+    ENTITY_PLACE -> 'the starbucks'
+    ENTITY_PLACE -> 'a starbucks'
+    ENTITY_PLACE -> 'coffee bean'
+    ENTITY_PLACE -> 'the coffee bean'
+    ENTITY_PLACE -> 'a coffee bean'
 
     """)
     return grammar
@@ -151,14 +146,3 @@ def tree_reconstruct(text):
             final_box.append(string_box)
 
     return final_box
-
-def speak_test():
-
-    # Use recognizer to record the speech.
-    recorder = sr.Recognizer()
-    with sr.Microphone() as mike:
-        print('Hello. Please speaking.')
-        my_sound = recorder.listen(mike)
-    tmp_words = recorder.recognize_google(my_sound)
-    words = str(tmp_words)
-    print(words)

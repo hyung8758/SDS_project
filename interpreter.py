@@ -210,7 +210,6 @@ def translator_manager(trans_mode=mode_arg):
             # Get the sound.
             recorder = sr.Recognizer()
             with sr.Microphone() as mike:
-
                 print('Please speaking.')
                 my_sound = recorder.listen(mike)
 
