@@ -9,6 +9,9 @@ location = path.abspath(path.dirname('SDS_project'))
 with open(path.join(location, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
+# Install megam for optimization
+os.system('brew install homebrew/science/megam portaudio')
+
 setup(
       name='SDS_project',
       version='1.0.0',
@@ -27,11 +30,10 @@ setup(
                'Interpreting system'],
       packages=['main_process','sub_process'],
       install_requires=['SpeechRecognition','nltk','beautifulsoup4','langid',
-                        'pyaudio','wave'],
+                        'pyaudio','wave','requests'],
       )
 
-# Install megam for optimization
-os.system('brew install megam')
+
 # Erase directories.
 os.system('rm -rf build dist SDS_project.egg-info')
 
