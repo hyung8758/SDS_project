@@ -9,9 +9,7 @@ Grammar Generator.
 
 import nltk
 
-from nltk import word_tokenize
-from nltk import Nonterminal, nonterminals, Production, CFG
-from nltk.parse import RecursiveDescentParser
+from nltk import nonterminals, CFG
 from nltk.corpus import conll2000
 
 
@@ -31,14 +29,17 @@ def CFG_grammar():
     GOAL_FIND -> 'find'
     GOAL_FIND  -> 'show'
     GOAL_FIND  -> 'tell'
+    GOAL_FIND  -> 'activate'
     O -> 'me'
     P -> 'in'
-    ENTITY_PLACE -> 'starbucks'
-    ENTITY_PLACE -> 'the starbucks'
-    ENTITY_PLACE -> 'a starbucks'
-    ENTITY_PLACE -> 'coffee bean'
-    ENTITY_PLACE -> 'the coffee bean'
-    ENTITY_PLACE -> 'a coffee bean'
+    ENTITY_PLACE -> 'Starbucks'
+    ENTITY_PLACE -> 'the Starbucks'
+    ENTITY_PLACE -> 'a Starbucks'
+    ENTITY_PLACE -> 'Coffee bean'
+    ENTITY_PLACE -> 'the Coffee bean'
+    ENTITY_PLACE -> 'a Coffee bean'
+    ENTITY_PLACE -> 'twosome place'
+    ENTITY_PLACE -> 'Korea University'
 
     """)
     return grammar
@@ -146,3 +147,4 @@ def tree_reconstruct(text):
             final_box.append(string_box)
 
     return final_box
+

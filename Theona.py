@@ -13,18 +13,9 @@ Spoken Dialogue System (SDS)
 
 '''
 
-
-import re
 import speech_recognition as sr
-import requests
-import nltk
 
-from nltk import word_tokenize
-from nltk import Nonterminal, nonterminals, Production, CFG
-from nltk.parse import RecursiveDescentParser
-from nltk.corpus import conll2000
 from bs4 import BeautifulSoup
-
 from main_process.grammar_generator import *
 from sub_process.dialogues import *
 from sub_process.Theona_voice import *
@@ -158,8 +149,7 @@ def Theona():
 
     # Step5. TTS
     audio_play('tone.wav')
-    os.system('say ' + answer_text)
-
+    os.system(answer_text)
 
 
 if __name__ == '__main__':
