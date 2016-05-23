@@ -16,7 +16,7 @@ Spoken Dialogue System (SDS)
 import speech_recognition as sr
 
 from bs4 import BeautifulSoup
-from nltk import RecursiveDescentParser
+from nltk import RecursiveDescentParser, word_tokenize , pos_tag
 from main_process.grammar_generator import *
 from sub_process.dialogues import *
 from sub_process.Theona_voice import *
@@ -69,7 +69,7 @@ def Theona():
     tokenized = word_tokenize(words)
 
     # Parsing the sentence to find out goal and entity clearly.
-    pos_tagged = nltk.pos_tag(tokenized)
+    pos_tagged = pos_tag(tokenized)
     chunk_words = chunker.parse(pos_tagged)
     reorder_words = tree_reconstruct(chunk_words)
 
