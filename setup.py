@@ -34,6 +34,7 @@ setup(
       )
 
 # nltk related modules and corpus.
+import nltk
 nltk.download(['conll2000','punkt','averaged_perceptron_tagger'])
 
 # Erase directories.
