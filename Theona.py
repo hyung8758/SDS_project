@@ -16,6 +16,7 @@ Spoken Dialogue System (SDS)
 import speech_recognition as sr
 
 from bs4 import BeautifulSoup
+from nltk import RecursiveDescentParser
 from main_process.grammar_generator import *
 from sub_process.dialogues import *
 from sub_process.Theona_voice import *
@@ -71,12 +72,6 @@ def Theona():
     pos_tagged = nltk.pos_tag(tokenized)
     chunk_words = chunker.parse(pos_tagged)
     reorder_words = tree_reconstruct(chunk_words)
-
-    # Build the grammar for parsing.
-    GOAL_FIND,ENTITY_PLACE = nonterminals('GOAL_FIND,ENTITY_PLACE')
-    usr_goal = ENTITY_PLACE
-    usr_find = GOAL_FIND
-    VP,NP,O = nonterminals('VP,NP,O')
 
     grammar = CFG_grammar()
     rd_parser = RecursiveDescentParser(grammar)

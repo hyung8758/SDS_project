@@ -3,16 +3,16 @@
                                                                             2016.05.20
                                                                               EMCS lab    
 
-MacOSX (This script is not tested on Window and Linux)
+### MacOSX (This script is not tested on Window and Linux)
 ----------------------------------------------------------------
 
 Python 3.5
 (This script was not tested on the other versions.)
 
 
-PREREQUEISTE
+### PREREQUEISTE
 ------------
-### SDS_project:Theona & Interpreter
+##### SDS_project:Theona & Interpreter
 
 1. Install python3: python 3 is required. This package is not running on python 2.
 2. Download the package and navigate to the SDS_project directory and install it.
@@ -28,12 +28,12 @@ $ python3 setup.py install
    - Choose Alex and Samantha and install them.
 
 
-DIRECTION
+### DIRECTION
 ---
-### SDS_project
+##### SDS_project
 
 
-### Interpreter
+##### Interpreter
 1. Due to the tts issue, this program is running on mac.
     - voice : samantha
     - To install samantha voice..
@@ -67,15 +67,15 @@ DIRECTION
 4. language Support.
     - Korean, English, Japanese, Chinese.
 
-CONTENTS
----
+### CONTENTS
+--------
 Spoken Dialogue System: Theona.
 
 
 Interpreter.
 
 
-CONTACTS
+### CONTACTS
 ---
 
 Hosung Nam / hnam@korea.ac.kr
@@ -83,7 +83,7 @@ Hosung Nam / hnam@korea.ac.kr
 Hyungwon Yang / hyung8758@gmail.com
 
 
-VERSION HISTORY
+### VERSION HISTORY
 ---
 1.0. (2016.05.20)
 1. It has three main scripts.

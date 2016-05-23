@@ -30,9 +30,11 @@ setup(
                'Interpreting system'],
       packages=['main_process','sub_process'],
       install_requires=['SpeechRecognition','nltk','beautifulsoup4','langid',
-                        'pyaudio','wave','requests'],
+                        'pyaudio','wave','requests','nltk'],
       )
 
+# nltk related modules and corpus.
+nltk.download(['conll2000','punkt','averaged_perceptron_tagger'])
 
 # Erase directories.
 os.system('rm -rf build dist SDS_project.egg-info')

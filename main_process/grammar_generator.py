@@ -20,26 +20,20 @@ def CFG_grammar():
     GOAL_FIND,ENTITY_PLACE = nonterminals('GOAL_FIND,ENTITY_PLACE')
     usr_goal = ENTITY_PLACE
     usr_find = GOAL_FIND
-    VP,NP,O = nonterminals('VP,NP,O')
+    P,S,O = nonterminals('P,S,O')
 
     # Build a CFG based on the symbols that generated above.
     grammar = CFG.fromstring("""
-    VP -> GOAL_FIND O ENTITY_PLACE | GOAL_FIND ENTITY_PLACE
-    NP -> P ENTITY_PLACE | ENTITY_PLACE
+    S -> GOAL_FIND O ENTITY_PLACE | GOAL_FIND ENTITY_PLACE
     GOAL_FIND -> 'find'
     GOAL_FIND  -> 'show'
     GOAL_FIND  -> 'tell'
     GOAL_FIND  -> 'activate'
-    O -> 'me'
+    O -> 'me' | 'you'
     P -> 'in'
-    ENTITY_PLACE -> 'Starbucks'
-    ENTITY_PLACE -> 'the Starbucks'
-    ENTITY_PLACE -> 'a Starbucks'
-    ENTITY_PLACE -> 'Coffee bean'
-    ENTITY_PLACE -> 'the Coffee bean'
-    ENTITY_PLACE -> 'a Coffee bean'
-    ENTITY_PLACE -> 'twosome place'
-    ENTITY_PLACE -> 'Korea University'
+    ENTITY_PLACE -> 'Starbucks' | 'the Starbucks' | 'a Starbucks' | 'a Starbucks' | 'starbucks' | \
+                    'Coffee bean' | 'the Coffee bean' | 'a Coffee bean' | 'coffee bean' | \
+                    'twosome place' | 'Korea University' | 'korea university'
 
     """)
     return grammar
