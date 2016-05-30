@@ -9,13 +9,13 @@ Testing system.
 
 import speech_recognition as sr
 
-def speak_test():
+def speak_test(lang_opt='en'):
 
     # Use recognizer to record the speech.
     recorder = sr.Recognizer()
     with sr.Microphone() as mike:
-        print('Hello. Please speaking.')
+        print('Please speaking.')
         my_sound = recorder.listen(mike)
-    tmp_words = recorder.recognize_google(my_sound)
+    tmp_words = recorder.recognize_google(my_sound,language=lang_opt)
     words = str(tmp_words)
     print(words)

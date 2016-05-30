@@ -13,6 +13,7 @@ import re
 import pyaudio
 import wave
 import time
+import speech_recognition as sr
 
 from sub_process.dialogues import language_form
 
@@ -58,3 +59,16 @@ def audio_play(song):
 
     stream.close()
     p.terminate()
+
+# This function records the speaker's voice again if it wasn't recognized.
+def listen_again(my_sound):
+
+    recorder = sr.Recognizer()
+    try:
+        recorder.recognize_google(my_sound)
+    except:
+        with sr.Microphone() as mike:
+            print('Listening...')
+            my_sound = recorder.listen(mike)
+            my_sound = listen_again(my_sound)
+    return my_sound

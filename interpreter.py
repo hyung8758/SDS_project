@@ -69,6 +69,7 @@ def translator_manager(trans_mode=mode_arg):
     if trans_mode == 'slow':
 
         recorder = sr.Recognizer()
+        audio_play('boost.wav')
         ### Language selection ###
         intro = inter_intro(trans_mode)
         os.system(intro)
@@ -123,6 +124,7 @@ def translator_manager(trans_mode=mode_arg):
 
 
         ### Start translation.
+        audio_play('start.wav')
         ic = Interpreter_contents(S,T)
         # Get the sound
         recorder = sr.Recognizer()
@@ -130,6 +132,7 @@ def translator_manager(trans_mode=mode_arg):
             print('Please speaking.')
             os.system(ic.inter_first())
             my_sound = recorder.listen(mike)
+            my_sound = listen_again(my_sound)
 
         print('Processing...')
 
@@ -149,6 +152,7 @@ def translator_manager(trans_mode=mode_arg):
         source_sent = sort_out(covered_sent[0],'translatedText')
 
         # TTS
+        audio_play('pong.wav')
         os.system(ic.inter_third())
         os.system(ic.inter_fourth() + source_sent)
 
@@ -157,6 +161,7 @@ def translator_manager(trans_mode=mode_arg):
     elif trans_mode == 'fast':
         ## Fast trasnlation mode
         recorder = sr.Recognizer()
+        audio_play('boost.wav')
         ### Language selection ###
         s_require, t_require, source, target, confirm = inter_setting()
         P = 1
@@ -213,11 +218,13 @@ def translator_manager(trans_mode=mode_arg):
             # Get the sound.
             recorder = sr.Recognizer()
             with sr.Microphone() as mike:
+                print('Please speak after the beep.')
                 audio_play('pong.wav')
-                print('Please speaking.')
                 my_sound = recorder.listen(mike)
+                my_sound = listen_again(my_sound)
+                print('Recording...')
 
-            print('Processing...')
+            print('Translating...')
 
             tmp_words = recorder.recognize_google(my_sound,language=lang_opt)
 
@@ -234,7 +241,6 @@ def translator_manager(trans_mode=mode_arg):
             source_sent = sort_out(covered_sent[0],'translatedText')
 
             # TTS
-            audio_play('tone.wav')
             print('sentence: ' + source_sent)
             os.system(ic.inter_fourth() + source_sent)
     else:

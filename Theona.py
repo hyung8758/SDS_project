@@ -16,7 +16,7 @@ Spoken Dialogue System (SDS)
 import speech_recognition as sr
 
 from bs4 import BeautifulSoup
-from nltk import RecursiveDescentParser, word_tokenize , pos_tag
+from nltk import RecursiveDescentParser, word_tokenize, pos_tag
 from main_process.grammar_generator import *
 from sub_process.dialogues import *
 from sub_process.Theona_voice import *
@@ -35,7 +35,7 @@ def Theona():
 
     train_sents = conll2000.chunked_sents('train.txt', chunk_types=['NP'])
     print('Training data... It will take 2-4 minutes.')
-    chunker = ConsecutiveNPChunker(train_sents)
+    #chunker = ConsecutiveNPChunker(train_sents)
     os.system(intro2)
 
     # Theona Introduction
@@ -51,6 +51,7 @@ def Theona():
         audio_play('pong.wav')
         os.system(starting)
         my_sound = recorder.listen(mike)
+        my_sound = listen_again(my_sound)
 
     print('Processing...')
 
@@ -63,7 +64,6 @@ def Theona():
 
     # Step2. SLU
     # 1. find the specific places to users.
-    #words = 'show me starbucks'
 
     # Tokenize the sentence.
     tokenized = word_tokenize(words)
@@ -127,8 +127,6 @@ def Theona():
     map_info = all_data[0].find('a').get('href')
 
     # Weather
-
-
 
     # Step4. NLG
     # Generate an appropriate sentence.

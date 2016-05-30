@@ -25,12 +25,11 @@ def CFG_grammar():
     # Build a CFG based on the symbols that generated above.
     grammar = CFG.fromstring("""
     S -> GOAL_FIND O ENTITY_PLACE | GOAL_FIND ENTITY_PLACE
-    GOAL_FIND -> 'find'
-    GOAL_FIND  -> 'show'
-    GOAL_FIND  -> 'tell'
-    GOAL_FIND  -> 'activate'
     O -> 'me' | 'you'
-    P -> 'in'
+    P -> 'in' | 'at' | 'on'
+
+    GOAL_FIND -> 'find' | 'show' | 'tell' | 'activate'
+
     ENTITY_PLACE -> 'Starbucks' | 'the Starbucks' | 'a Starbucks' | 'a Starbucks' | 'starbucks' | \
                     'Coffee bean' | 'the Coffee bean' | 'a Coffee bean' | 'coffee bean' | \
                     'twosome place' | 'Korea University' | 'korea university'
@@ -59,7 +58,6 @@ class ChunkParser(nltk.ChunkParserI):
         return nltk.chunk.conlltags2tree(conlltags)
 
 
-#
 class ConsecutiveNPChunkTagger(nltk.TaggerI):
 
     def __init__(self, train_sents):
