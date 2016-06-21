@@ -32,7 +32,7 @@ from sub_process.dialogues import *
 from sub_process.util import *
 
 ##### Google API Key Number is Required for translation #####
-key_number = 'AIzaSyB52DQtWqssMqJ3ORlQzA_MveJlRU5WRBM'
+key_number = 'Please type Google PI key number here.'
 #############################################################
 
 
